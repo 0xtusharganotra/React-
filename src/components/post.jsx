@@ -34,3 +34,5 @@ export function PostComponent(props){
     </div>
   )
 }
+
+//Whenever we pass prop
