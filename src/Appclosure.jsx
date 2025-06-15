@@ -14,7 +14,7 @@ function App(){
             {
                 showtimer && <Timer/> // if showtimer is true Timer component will be shown and once showtimer turns false Time component will hide or technically get unmounted
             }
-        </div>
+        </div> 
     )
 }
 
