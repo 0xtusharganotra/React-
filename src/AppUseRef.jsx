@@ -2,7 +2,7 @@ import React from "react";
 import { useRef , useEffect, useState  } from "react";
 
 
-// 1. Focus on input box once submit button is clicked
+// 1. Focus on input box once submit button is clicked (UseRef for dom)
 // function App(){
 //     const inputref = useRef();
 
@@ -51,7 +51,7 @@ import { useRef , useEffect, useState  } from "react";
 //   );
 // }
 
-// 3. Start and Stop Clock
+// 3. Start and Stop Clock (UseRef for value)
 
 const buttonstyle = {
     padding : 10,
@@ -97,6 +97,7 @@ function App(){
 }
 
 //So what happeing here is once user clicks on Start button a setInterval started increasing the value of count without causing rerender because we are not directly chainging the state, and we are putting the 'value' inside out timer.current which is a useRef or ref variable now when user clicks on stop what basically happens is cleaInterval is called now we cant access 'value' directly beacuse its a local variable so we clear timer.current which is a refrence to value 
+
 
 
 
