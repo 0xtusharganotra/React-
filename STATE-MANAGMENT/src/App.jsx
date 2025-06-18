@@ -1,93 +1,64 @@
-import { useState  } from 'react'
+import { useState  , createContext, useContext} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import { BulbProvider , BulbContext} from './BulbProvider'
 
-// function App() {
+
+function App() {
  
-
-//   return (
-//     <>
-//       <Light />
-//     </>
-//   )
-// }
-
-// function Light(){
-//   const [islightbulb , setislightbulb] = useState(true);
-//   return(
-//     <>
-//     <LightBulb islightbulb={islightbulb}/>
-//     <LightSwitch islightbulb = {islightbulb} setislightbulb = {setislightbulb} />
-//     </>
-//   )
-// }
-
-
-// function LightBulb({islightbulb}){
-//   return(
-//     <>
-//     {
-//       islightbulb ? <p>Light Bulb On</p> : <p>Ligh Bulb Off</p>
-//     }
-//     </>
-//   )
-// }
-
-// function LightSwitch({islightbulb , setislightbulb}){
-
-//   function triggeronoff(){
-//     setislightbulb(!islightbulb);
-//   }
-//   return(
-//     <div>
-//       <button onClick={triggeronoff}>Toggle Light</button>
-//     </div>
-//   )
-// }
-// export default App
-
-
-function App(){
-  const [Count ,setCount]  = useState(0);
-  return(
+  // const [islightbulb , setislightbulb] = useState(true);
+  return (
     <>
-    <Increase setCount = {setCount}/>
-    <Decrease setCount = {setCount} />
-    <Value Count = {Count}/>
+    {/* <BulbContext.Provider value={{ //2 Setting  up the provider and wrapping up part of application inside it 
+      islightbulb : islightbulb,
+      setislightbulb : setislightbulb
+    }}> */}
+    <BulbProvider>
+
+<Light />
+    </BulbProvider>
+      
+      
     </>
   )
-
 }
 
-function Increase({setCount}){
-  function increasecounter(){
-    setCount(v => v+1);
+function Light(){ //Skipped prop drilling from intermediate component  
+  
+  return(
+    <>
+    <LightBulb />
+    <LightSwitch  />
+    </>
+  )
+}
+
+
+function LightBulb(){
+
+  const {islightbulb} = useContext(BulbContext);
+  return(
+    <>
+    {
+      islightbulb ? <p>Light Bulb On</p> : <p>Ligh Bulb Off</p>
+    }
+    </>
+  )
+}
+
+function LightSwitch(){
+
+  const {islightbulb , setislightbulb} = useContext(BulbContext); //3. Consuming the data using useContext(BulbContext)
+
+  function triggeronoff(){
+    setislightbulb(!islightbulb);
   }
-  return(
-    <>
-    <button onClick={increasecounter}>Increase</button>
-    </>
-  )
-}
-
-function Decrease({setCount}){
-  function decreaseCount(){
-    setCount(v => v-1);
-  }
-  return(
-    <>
-    <button onClick={decreaseCount}>Decrease</button>
-    </>
-  )
-}
-
-function Value({Count}){
   return(
     <div>
-      Count : {Count};
+      <button onClick={triggeronoff}>Toggle Light</button>
     </div>
   )
 }
-
 export default App
+
