@@ -1,17 +1,25 @@
 import { useState } from "react";
-import { usePrev } from "../custom_hooks/usePrev";
+import {useDebounce} from './../custom_hooks/useDebounce'
+import { useEffect } from "react";
 import './App.css'
 
 function App(){
+//creating for search
+const [value , setvalue] = useState("");
+const debouncer = useDebounce(value , 200);
 
-  const [count , setcount] = useState(0);
-  const prev = usePrev(count);
-  return(
-    <>
-      <p>{count}</p>
-      <button onClick={()=>setcount(count+1)}>Increment {prev}</button>
-    </>
-  )
+useEffect(()=>{
+  //some expensive operation maybe fetching 
+  console.log("expensive operation happeing");
+} , [debouncer]);
+
+return(
+  <>
+  <p>Enter value</p>
+  <input type="text" value = {value} onChange={(e)=>setvalue(e.target.value)} />
+  {/* always use values = {values} with onChange */}
+  </>
+)
 }
 
 export default App
