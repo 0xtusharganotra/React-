@@ -1,27 +1,17 @@
 import { useState } from "react";
-import {useFetch} from './../custom_hooks/usefetchwithretrytime'
-import './App.css';
-
+import { usePrev } from "../custom_hooks/usePrev";
+import './App.css'
 
 function App(){
 
-  const [postno , setpostno] = useState(1);
-  const {post , loading} = useFetch(`https://jsonplaceholder.typicode.com/todos/${postno}` , 10 );
-
-  return (
+  const [count , setcount] = useState(0);
+  const prev = usePrev(count);
+  return(
     <>
-      <button onClick={()=>setpostno(1)}>----1----</button>
-      <button  onClick={()=>setpostno(2)}>----2----</button>
-      <button  onClick={()=>setpostno(3)}>----3----</button>
-      <br />
-      <br />
-         
-          {loading ? <p>Loading...</p> : <p>{post.title}</p>}
-
-
-      
+      <p>{count}</p>
+      <button onClick={()=>setcount(count+1)}>Increment {prev}</button>
     </>
   )
 }
 
-export default App;
+export default App

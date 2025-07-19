@@ -1,5 +1,5 @@
 import React from "react";
-import { useRef , useEffect, useState  } from "react";
+import { useRef, useEffect, useState } from "react";
 
 
 // 1. Focus on input box once submit button is clicked (UseRef for dom)
@@ -54,44 +54,46 @@ import { useRef , useEffect, useState  } from "react";
 // 3. Start and Stop Clock (UseRef for value)
 
 const buttonstyle = {
-    padding : 10,
-    backgroundColor : "black",
-    color :"white",
-    borderRadius : 10,
+    padding: 10,
+    backgroundColor: "black",
+    color: "white",
+    borderRadius: 10,
 }
-function App(){
+function App() {
 
-    const [count,setCount] = useState(1);
+    const [count, setCount] = useState(1);
     const timer = useRef();
-    function clockstart(){
-         let value = setInterval(()=>{
-            setCount(c => c+1);
-        },1000);
+    function clockstart() {
+        let value = setInterval(() => {
+            setCount(c => c + 1);
+        }, 1000);
         timer.current = value;
     }
 
-    function clockStop(){
+    function clockStop() {
         clearInterval(timer.current);
-        
+
     }
 
-    function restartClock(){
+    function restartClock() {
         setCount(0);
         clearInterval(timer.current);
     }
-    return(
-        <div style={{margin:"30px" , padding:"20px" , width:"40vw" , height:"40vh" , border:"2px solid black", borderRadius:"100px" , display:"flex" , flexDirection:"column" , justifyContent:"center" ,alignItems:"center", gap:20}}>
-            <div style={{fontSize:"2rem"}}>{count}</div>
-            <div style={{width:"50%", display : "flex",
-    flexDirection:"row",
-    justifyContent : "space-around",
-    alignItems : "center",
-    gap:10}}>
-            <button style={buttonstyle} onClick={clockstart}>Start</button>
-            <button style={buttonstyle} onClick={clockStop}>Stop</button>
-            <button style={buttonstyle} onClick={restartClock}>Restart</button>
+    return (
+        <div style={{ margin: "30px", padding: "20px", width: "40vw", height: "40vh", border: "2px solid black", borderRadius: "100px", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", gap: 20 }}>
+            <div style={{ fontSize: "2rem" }}>{count}</div>
+            <div style={{
+                width: "50%", display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+                alignItems: "center",
+                gap: 10
+            }}>
+                <button style={buttonstyle} onClick={clockstart}>Start</button>
+                <button style={buttonstyle} onClick={clockStop}>Stop</button>
+                <button style={buttonstyle} onClick={restartClock}>Restart</button>
             </div>
-            
+
         </div>
     )
 }
