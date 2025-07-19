@@ -41,7 +41,7 @@ function LightBulb(){
   return(
     <>
     {
-      islightbulb ? <p>Light Bulb On</p> : <p>Ligh Bulb Off</p>
+      islightbulb ?  <img src='https://www.w3schools.com/js/pic_bulboff.gif'></img> : <img src="https://www.w3schools.com/js/pic_bulbon.gif"></img>
     }
     </>
   )
