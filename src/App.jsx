@@ -1,15 +1,24 @@
 import { useState } from "react";
-import { useFetch } from "./custom_hooks/useFetch";
+import {useFetch} from './../custom_hooks/usefetchwithretrytime'
 import './App.css';
 
 
 function App(){
 
-  const post = useFetch("https://jsonplaceholder.typicode.com/todos/1");
+  const [postno , setpostno] = useState(1);
+  const {post , loading} = useFetch(`https://jsonplaceholder.typicode.com/todos/${postno}` , 10 );
 
   return (
     <>
-       <p>{post.title}</p>
+      <button onClick={()=>setpostno(1)}>----1----</button>
+      <button  onClick={()=>setpostno(2)}>----2----</button>
+      <button  onClick={()=>setpostno(3)}>----3----</button>
+      <br />
+      <br />
+         
+          {loading ? <p>Loading...</p> : <p>{post.title}</p>}
+
+
       
     </>
   )
